@@ -3,14 +3,14 @@ description: A multi-platform ErrorX BDIX client based on ClashMeta, simple and 
 publish_to: 'none'
 version: 1.0.1+202505101
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: '>=3.4.0 <4.0.0'  # Updated from 3.1.0 to 3.4.0 to support ffigen
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl: any
+  intl: ^0.18.1  # Changed from 'any' to specific version
   path_provider: ^2.1.0
   path: ^1.9.0
   shared_preferences: ^2.5.3
@@ -55,11 +55,12 @@ dependencies:
   riverpod: ^2.6.1
   encrypt: ^5.0.3
   crypto: ^3.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  ffigen: ^15.0.0
+  ffigen: ^15.0.0  # Now compatible with updated SDK constraint
   json_serializable: ^6.7.1
   build_runner: ^2.4.13
   args: ^2.4.2
@@ -85,12 +86,14 @@ flutter:
     - family: Icons
       fonts:
         - asset: assets/fonts/Icons.ttf
+
 ffigen:
   name: "ClashFFI"
   output: 'lib/clash/generated/clash_ffi.dart'
   headers:
     entry-points:
       - 'libclash/android/arm64-v8a/libclash.h'
+
 flutter_intl:
   enabled: true
   class_name: AppLocalizations
