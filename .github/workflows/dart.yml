@@ -8,12 +8,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up Flutter
+    - name: Set up Flutter (with newer Dart SDK)
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.19.5'
+        flutter-version: '3.19.5'  # Contains Dart 3.7.5
         channel: 'stable'
     
+    - name: Verify Dart version
+      run: dart --version  # Should show 3.7.5
+      
     - name: Install dependencies
       run: flutter pub get
       
@@ -21,7 +24,7 @@ jobs:
       run: flutter build apk --release
       
     - name: Upload APK
-      uses: actions/upload-artifact@v4  # Updated version
+      uses: actions/upload-artifact@v4
       with:
         name: app-release
         path: build/app/outputs/flutter-apk/app-release.apk
